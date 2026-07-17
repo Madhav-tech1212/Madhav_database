@@ -1,0 +1,279 @@
+{
+  "visitors": [
+    {
+      "id": "90947fae-968c-40e7-a1fd-047b7c0b5358",
+      "country": "India",
+      "device": "Desktop",
+      "browser": "Chrome",
+      "os": "Windows",
+      "screenResolution": "1920x1080",
+      "returning": true,
+      "firstSeen": "2026-07-16T18:53:51.134Z"
+    },
+    {
+      "id": "094267f6-04a7-4835-8f59-2382c17b7d10",
+      "country": "India",
+      "device": "Desktop",
+      "browser": "Chrome",
+      "os": "Windows",
+      "screenResolution": "1920x1080",
+      "returning": true,
+      "firstSeen": "2026-07-16T18:54:19.955Z"
+    },
+    {
+      "id": "ac6d32e6-5bb6-4e43-bdc3-8fc57e9d7db7",
+      "country": "India",
+      "device": "Desktop",
+      "browser": "Chrome",
+      "os": "Windows",
+      "screenResolution": "1920x1080",
+      "returning": true,
+      "firstSeen": "2026-07-16T19:00:07.915Z"
+    },
+    {
+      "id": "e7be88b8-78d5-45eb-ae48-46a1363a4ea5",
+      "country": "India",
+      "device": "Mobile",
+      "browser": "Safari",
+      "os": "macOS",
+      "screenResolution": "390x844",
+      "returning": true,
+      "firstSeen": "2026-07-16T19:00:49.647Z"
+    }
+  ],
+  "sessions": [
+    {
+      "id": "39dff1fa-b0af-422a-ba22-1aa29f1d03fa",
+      "visitorId": "90947fae-968c-40e7-a1fd-047b7c0b5358",
+      "trafficSource": "Referral",
+      "referrer": "Direct",
+      "startedAt": "2026-07-16T18:53:51.139Z",
+      "lastActive": "2026-07-16T19:17:13.865Z",
+      "duration": 1402
+    },
+    {
+      "id": "c37aa151-97a6-4615-95d9-70646512ae53",
+      "visitorId": "094267f6-04a7-4835-8f59-2382c17b7d10",
+      "trafficSource": "Direct",
+      "referrer": "",
+      "startedAt": "2026-07-16T18:54:19.958Z",
+      "lastActive": "2026-07-16T19:13:32.778Z",
+      "duration": 1152
+    },
+    {
+      "id": "5287c022-49ec-4a81-a8f8-4d76a14549c7",
+      "visitorId": "ac6d32e6-5bb6-4e43-bdc3-8fc57e9d7db7",
+      "trafficSource": "Direct",
+      "referrer": "",
+      "startedAt": "2026-07-16T19:00:07.919Z",
+      "lastActive": "2026-07-16T19:14:06.686Z",
+      "duration": 838
+    },
+    {
+      "id": "26bf48fc-c80d-4cd8-a529-30e5fa508ce3",
+      "visitorId": "e7be88b8-78d5-45eb-ae48-46a1363a4ea5",
+      "trafficSource": "Direct",
+      "referrer": "",
+      "startedAt": "2026-07-16T19:00:49.652Z",
+      "lastActive": "2026-07-16T19:17:20.959Z",
+      "duration": 991
+    },
+    {
+      "id": "beb3e622-0763-4e4e-9660-46500388cc7f",
+      "visitorId": "90947fae-968c-40e7-a1fd-047b7c0b5358",
+      "trafficSource": "Direct",
+      "referrer": "",
+      "startedAt": "2026-07-16T19:14:20.792Z",
+      "lastActive": "2026-07-16T19:18:42.298Z",
+      "duration": 261
+    }
+  ],
+  "pageViews": [
+    {
+      "id": "d2c6bb6a-bbc3-4324-b4c5-bc059657b8c4",
+      "sessionId": "39dff1fa-b0af-422a-ba22-1aa29f1d03fa",
+      "pagePath": "home",
+      "viewedAt": "2026-07-16T18:53:51.188Z"
+    },
+    {
+      "id": "6669dc33-8e8d-472d-9edb-b78cd70fb1dd",
+      "sessionId": "c37aa151-97a6-4615-95d9-70646512ae53",
+      "pagePath": "home",
+      "viewedAt": "2026-07-16T18:54:19.961Z"
+    },
+    {
+      "id": "7ddd4195-2b0a-41c8-9a8e-9254bddf83d9",
+      "sessionId": "5287c022-49ec-4a81-a8f8-4d76a14549c7",
+      "pagePath": "home",
+      "viewedAt": "2026-07-16T19:00:07.922Z"
+    },
+    {
+      "id": "9dce5e74-8b24-4f40-a68d-2b6dd1611088",
+      "sessionId": "26bf48fc-c80d-4cd8-a529-30e5fa508ce3",
+      "pagePath": "home",
+      "viewedAt": "2026-07-16T19:00:49.655Z"
+    },
+    {
+      "id": "5027c38d-d4f6-428a-8838-5db43c111cac",
+      "sessionId": "39dff1fa-b0af-422a-ba22-1aa29f1d03fa",
+      "pagePath": "home",
+      "viewedAt": "2026-07-16T19:06:27.868Z"
+    },
+    {
+      "id": "bcfb68e4-f656-404c-b896-f6c734f745fe",
+      "sessionId": "c37aa151-97a6-4615-95d9-70646512ae53",
+      "pagePath": "home",
+      "viewedAt": "2026-07-16T19:06:28.067Z"
+    },
+    {
+      "id": "488297f9-c5d7-4a03-9d65-591aadceb057",
+      "sessionId": "5287c022-49ec-4a81-a8f8-4d76a14549c7",
+      "pagePath": "home",
+      "viewedAt": "2026-07-16T19:06:28.450Z"
+    },
+    {
+      "id": "8f104a45-dda3-4f25-be4a-1c6fd3f6b3d0",
+      "sessionId": "26bf48fc-c80d-4cd8-a529-30e5fa508ce3",
+      "pagePath": "home",
+      "viewedAt": "2026-07-16T19:06:28.928Z"
+    },
+    {
+      "id": "47f0b6c3-d8ef-40de-8029-3ee1bdb78f67",
+      "sessionId": "beb3e622-0763-4e4e-9660-46500388cc7f",
+      "pagePath": "home",
+      "viewedAt": "2026-07-16T19:14:20.795Z"
+    },
+    {
+      "id": "0dcfed94-40dd-4afa-9e28-382e8c52788f",
+      "sessionId": "beb3e622-0763-4e4e-9660-46500388cc7f",
+      "pagePath": "skills",
+      "viewedAt": "2026-07-16T19:17:09.078Z"
+    },
+    {
+      "id": "9fcfce8e-1dea-4771-b909-5fad26aab866",
+      "sessionId": "39dff1fa-b0af-422a-ba22-1aa29f1d03fa",
+      "pagePath": "projects",
+      "viewedAt": "2026-07-16T19:17:13.868Z"
+    },
+    {
+      "id": "3d4a8fb2-5ded-4bb2-8804-dddac95cc87d",
+      "sessionId": "beb3e622-0763-4e4e-9660-46500388cc7f",
+      "pagePath": "home",
+      "viewedAt": "2026-07-16T19:18:42.220Z"
+    },
+    {
+      "id": "7e8eb3df-325b-49db-a259-10843e337249",
+      "sessionId": "beb3e622-0763-4e4e-9660-46500388cc7f",
+      "pagePath": "skills",
+      "viewedAt": "2026-07-16T19:18:42.301Z"
+    }
+  ],
+  "customEvents": [
+    {
+      "id": "1478b789-41ef-4a11-a8f8-f6b0c57d4b15",
+      "sessionId": "39dff1fa-b0af-422a-ba22-1aa29f1d03fa",
+      "eventType": "cta_click",
+      "eventName": "Enter Workspace",
+      "metadata": "{}",
+      "triggeredAt": "2026-07-16T18:53:55.645Z"
+    },
+    {
+      "id": "7b0e2713-6589-4155-b65f-1ac7a6a6802a",
+      "sessionId": "c37aa151-97a6-4615-95d9-70646512ae53",
+      "eventType": "cta_click",
+      "eventName": "Enter Workspace",
+      "metadata": "{}",
+      "triggeredAt": "2026-07-16T18:54:23.376Z"
+    },
+    {
+      "id": "f060e3c6-842f-49ba-a90d-8c1d9d5883c4",
+      "sessionId": "c37aa151-97a6-4615-95d9-70646512ae53",
+      "eventType": "cta_click",
+      "eventName": "Enter Workspace",
+      "metadata": "{}",
+      "triggeredAt": "2026-07-16T18:54:23.572Z"
+    },
+    {
+      "id": "5edbd107-799a-4c75-acd2-c04716141b9e",
+      "sessionId": "c37aa151-97a6-4615-95d9-70646512ae53",
+      "eventType": "cta_click",
+      "eventName": "Enter Workspace",
+      "metadata": "{}",
+      "triggeredAt": "2026-07-16T18:54:23.702Z"
+    },
+    {
+      "id": "b13d251f-f40c-4535-9933-218129c310df",
+      "sessionId": "5287c022-49ec-4a81-a8f8-4d76a14549c7",
+      "eventType": "cta_click",
+      "eventName": "Enter Workspace",
+      "metadata": "{}",
+      "triggeredAt": "2026-07-16T19:00:14.534Z"
+    },
+    {
+      "id": "2e32e4fe-f66c-46bc-bfe1-c089dae46465",
+      "sessionId": "26bf48fc-c80d-4cd8-a529-30e5fa508ce3",
+      "eventType": "cta_click",
+      "eventName": "Enter Workspace",
+      "metadata": "{}",
+      "triggeredAt": "2026-07-16T19:00:54.948Z"
+    },
+    {
+      "id": "f9a2121c-9500-40a8-b2e7-f9e72a4e32ac",
+      "sessionId": "c37aa151-97a6-4615-95d9-70646512ae53",
+      "eventType": "cta_click",
+      "eventName": "Enter Workspace",
+      "metadata": "{}",
+      "triggeredAt": "2026-07-16T19:13:32.780Z"
+    },
+    {
+      "id": "d684f8f5-192c-4e81-a40c-c2ffe0afe74a",
+      "sessionId": "39dff1fa-b0af-422a-ba22-1aa29f1d03fa",
+      "eventType": "cta_click",
+      "eventName": "Enter Workspace",
+      "metadata": "{}",
+      "triggeredAt": "2026-07-16T19:13:55.041Z"
+    },
+    {
+      "id": "d814b4b7-01b2-4fc1-9e0b-bcee8788f047",
+      "sessionId": "26bf48fc-c80d-4cd8-a529-30e5fa508ce3",
+      "eventType": "cta_click",
+      "eventName": "Enter Workspace",
+      "metadata": "{}",
+      "triggeredAt": "2026-07-16T19:14:02.037Z"
+    },
+    {
+      "id": "b698a65b-944a-49c6-92de-e1e1c8058d0f",
+      "sessionId": "5287c022-49ec-4a81-a8f8-4d76a14549c7",
+      "eventType": "cta_click",
+      "eventName": "Enter Workspace",
+      "metadata": "{}",
+      "triggeredAt": "2026-07-16T19:14:06.689Z"
+    },
+    {
+      "id": "100076ba-2988-44af-a655-8a00c51596ec",
+      "sessionId": "beb3e622-0763-4e4e-9660-46500388cc7f",
+      "eventType": "cta_click",
+      "eventName": "Enter Workspace",
+      "metadata": "{}",
+      "triggeredAt": "2026-07-16T19:14:25.062Z"
+    },
+    {
+      "id": "6c81d214-d348-4984-8f6c-00d3c0f74e88",
+      "sessionId": "26bf48fc-c80d-4cd8-a529-30e5fa508ce3",
+      "eventType": "social_click",
+      "eventName": "LinkedIn Click",
+      "metadata": "{\"href\":\"https://www.linkedin.com/in/madhavkarthickki\"}",
+      "triggeredAt": "2026-07-16T19:17:20.963Z"
+    }
+  ],
+  "dailyStatistics": [
+    {
+      "id": "0e48f997-54e6-4f19-b05c-478854e3461e",
+      "date": "2026-07-16T18:30:00.000Z",
+      "totalPageViews": 13,
+      "uniqueVisitors": 4,
+      "totalSessions": 5,
+      "avgSessionDuration": 928.8
+    }
+  ]
+}

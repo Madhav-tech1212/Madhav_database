@@ -1,0 +1,66 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Visitor {
+  id               String    @id @default(uuid())
+  country          String    @default("Unknown")
+  device           String    @default("Desktop")
+  browser          String    @default("Unknown")
+  os               String    @default("Unknown")
+  screenResolution String    @default("Unknown")
+  firstSeen        DateTime  @default(now())
+  returning        Boolean   @default(false)
+  sessions         Session[]
+}
+
+model Session {
+  id            String        @id @default(uuid())
+  visitorId     String
+  visitor       Visitor       @relation(fields: [visitorId], references: [id], onDelete: Cascade)
+  trafficSource String        @default("Direct") // Google, LinkedIn, GitHub, Direct, Referral
+  referrer      String        @default("")
+  startedAt     DateTime      @default(now())
+  duration      Int           @default(0) // session duration in seconds
+  lastActive    DateTime      @default(now())
+  pageViews     PageView[]
+  customEvents  CustomEvent[]
+}
+
+model PageView {
+  id        String   @id @default(uuid())
+  sessionId String
+  session   Session  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  pagePath  String   // home, sql, python, powerbi, ml, projects, skills, experience, certifications, resume, blog, contact
+  viewedAt  DateTime @default(now())
+}
+
+model CustomEvent {
+  id          String   @id @default(uuid())
+  sessionId   String
+  session     Session  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  eventType   String   // cta_click, resume_download, social_click, scroll_depth
+  eventName   String   // Hire Me, View Project, Download Resume, etc.
+  metadata    String   @default("") // JSON string for extra info
+  triggeredAt DateTime @default(now())
+}
+
+model DailyStatistic {
+  id                 String   @id @default(uuid())
+  date               DateTime @unique
+  totalVisitors      Int      @default(0)
+  uniqueVisitors     Int      @default(0)
+  totalSessions      Int      @default(0)
+  avgSessionDuration Float    @default(0)
+  totalPageViews     Int      @default(0)
+}
