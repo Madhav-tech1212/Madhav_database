@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer,
   BarChart, Bar, PieChart, Pie, Cell
@@ -60,6 +61,8 @@ interface RealtimeData {
 const COLORS = ["#00d2ff", "#3b82f6", "#6366f1", "#a855f7", "#ec4899", "#f43f5e"];
 
 export default function AnalyticsPage() {
+  const router = useRouter();
+  const [authorized, setAuthorized] = useState<boolean | null>(null);
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState<StatsData | null>(null);
   
@@ -76,6 +79,17 @@ export default function AnalyticsPage() {
   const [insights, setInsights] = useState<string[]>([]);
   const [insightsLoading, setInsightsLoading] = useState(true);
   const [dashboardTab, setDashboardTab] = useState<"overview" | "behavior" | "demographics">("overview");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const isAuth = sessionStorage.getItem("admin_portfolio_auth") === "true";
+      if (!isAuth) {
+        router.replace("/admin");
+      } else {
+        setAuthorized(true);
+      }
+    }
+  }, [router]);
 
   // Fetch stats based on active filters
   const fetchStats = async () => {
@@ -126,16 +140,20 @@ export default function AnalyticsPage() {
 
   // Polling for real-time card (every 6 seconds)
   useEffect(() => {
-    fetchRealtime();
-    const interval = setInterval(fetchRealtime, 6000);
-    return () => clearInterval(interval);
-  }, []);
+    if (authorized) {
+      fetchRealtime();
+      const interval = setInterval(fetchRealtime, 6000);
+      return () => clearInterval(interval);
+    }
+  }, [authorized]);
 
   // Fetch statistics and insights on filter changes
   useEffect(() => {
-    fetchStats();
-    fetchInsights();
-  }, [range, country, source, browser, os, device]);
+    if (authorized) {
+      fetchStats();
+      fetchInsights();
+    }
+  }, [range, country, source, browser, os, device, authorized]);
 
   const handleSignOut = () => {
     sessionStorage.removeItem("admin_portfolio_auth");
@@ -150,6 +168,14 @@ export default function AnalyticsPage() {
     const remainSecs = secs % 60;
     return `${mins}m ${remainSecs}s`;
   };
+
+  if (authorized === null) {
+    return (
+      <div className="h-screen w-screen bg-[#05070f] flex items-center justify-center font-mono text-xs text-slate-500">
+        <div className="animate-pulse">DECRYPTING SECURITY SESSION...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="p-6 md:p-8 space-y-6 max-w-7xl mx-auto min-h-screen text-slate-200 font-sans select-none relative z-10">
