@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { 
   Mail, 
-  Phone, 
   MapPin, 
   Send, 
   Terminal,
@@ -11,7 +10,7 @@ import {
 } from "lucide-react";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 
-export default function ContactTab() {
+export default function ContactPage() {
   const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
   const [submitting, setSubmitting] = useState(false);
   const [consoleLogs, setConsoleLogs] = useState<string[]>([]);
@@ -55,7 +54,7 @@ export default function ContactTab() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 select-none font-sans max-w-6xl mx-auto">
       
-      {/* Contact Details Card (Left col) */}
+      {/* Contact Details Card */}
       <div className="lg:col-span-1 rounded-xl border border-border bg-card p-6 flex flex-col justify-between gap-8">
         <div className="space-y-6">
           <div className="border-b border-border pb-3">
@@ -126,7 +125,7 @@ export default function ContactTab() {
         </div>
       </div>
 
-      {/* Form Area (Right 2 cols) */}
+      {/* Form Area */}
       <div className="lg:col-span-2 flex flex-col gap-6">
         
         {/* Input Form */}
@@ -189,7 +188,6 @@ export default function ContactTab() {
               />
             </div>
 
-            {/* Buttons */}
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <button
                 type="submit"

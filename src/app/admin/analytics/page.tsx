@@ -1,15 +1,16 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import {
   AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer,
   BarChart, Bar, PieChart, Pie, Cell
 } from "recharts";
 import {
   TrendingUp, Users, Clock, Globe, ArrowDownToLine,
-  Mail, Sparkles, RefreshCw, LogOut, Laptop, CheckCircle2, ChevronRight, Activity, Search
+  Sparkles, RefreshCw, LogOut, Activity
 } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
+import AnalyticsTracker from "@/components/dashboard/AnalyticsTracker";
 
 interface StatsData {
   kpis: {
@@ -58,7 +59,7 @@ interface RealtimeData {
 
 const COLORS = ["#00d2ff", "#3b82f6", "#6366f1", "#a855f7", "#ec4899", "#f43f5e"];
 
-export default function AnalyticsOverview() {
+export default function AnalyticsPage() {
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState<StatsData | null>(null);
   
@@ -152,6 +153,7 @@ export default function AnalyticsOverview() {
 
   return (
     <div className="p-6 md:p-8 space-y-6 max-w-7xl mx-auto min-h-screen text-slate-200 font-sans select-none relative z-10">
+      <AnalyticsTracker />
       
       {/* Top dashboard header bar */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-border pb-4 gap-4">
@@ -352,10 +354,9 @@ export default function AnalyticsOverview() {
         </button>
       </div>
 
-      {/* Primary KPI Grid (Rendered above tabs for quick lookup) */}
+      {/* Primary KPI Grid */}
       {stats && (
         <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
-          
           <div className="rounded-xl border border-border bg-card p-4 space-y-1">
             <div className="flex items-center justify-between">
               <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider">Unique Visitors</span>
@@ -403,7 +404,6 @@ export default function AnalyticsOverview() {
             <div className="text-xl font-bold text-white tabular-nums">{stats.kpis.githubClicks.toLocaleString()}</div>
             <div className="text-[9px] font-mono text-slate-500">Repository Referral Triggers</div>
           </div>
-
         </div>
       )}
 
@@ -419,8 +419,6 @@ export default function AnalyticsOverview() {
           {/* TAB 1: GENERAL OVERVIEW */}
           {dashboardTab === "overview" && (
             <div className="space-y-6">
-              
-              {/* Main Area Chart Container */}
               <div className="rounded-xl border border-border bg-card p-5">
                 <div className="flex items-center justify-between border-b border-border pb-3 mb-5">
                   <div>
@@ -452,9 +450,7 @@ export default function AnalyticsOverview() {
                 </div>
               </div>
 
-              {/* Bottom Row: Referrers & Countries & Activity logs */}
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                
                 {/* Traffic Referral Donut */}
                 <div className="rounded-xl border border-border bg-card p-5 flex flex-col justify-between">
                   <div className="border-b border-border pb-3 mb-4">
@@ -502,7 +498,7 @@ export default function AnalyticsOverview() {
 
                   <div className="space-y-3.5 max-h-64 overflow-y-auto pr-1 scrollbar-none">
                     {stats.distributions.countries.length === 0 ? (
-                      <div className="text-center text-slate-500 text-xs italic">No geographic data logged yet...</div>
+                      <div className="text-center text-slate-500 text-xs italic py-4">No geographic data logged yet...</div>
                     ) : (
                       stats.distributions.countries.map((ctr, cIdx) => (
                         <div key={cIdx} className="flex items-center justify-between text-xs">
@@ -544,15 +540,13 @@ export default function AnalyticsOverview() {
                     ))}
                   </div>
                 </div>
-
               </div>
             </div>
           )}
 
           {/* TAB 2: BEHAVIOR & CTAS */}
           {dashboardTab === "behavior" && (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {/* Top Pages viewed table */}
               <div className="rounded-xl border border-border bg-card p-5 space-y-4">
                 <div className="border-b border-border pb-3">
@@ -567,6 +561,29 @@ export default function AnalyticsOverview() {
                       <span className="font-bold text-cyan-400">{pg.count.toLocaleString()} views</span>
                     </div>
                   ))}
+                </div>
+              </div>
+
+              {/* Top Case Studies viewed table */}
+              <div className="rounded-xl border border-border bg-card p-5 space-y-4">
+                <div className="border-b border-border pb-3">
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-white">Top Viewed Projects</h3>
+                  <span className="text-[9px] text-slate-500 font-mono">Total detail views per project</span>
+                </div>
+
+                <div className="space-y-3">
+                  {stats.topContent.topProjects.length === 0 ? (
+                    <div className="text-center text-slate-500 text-xs italic py-4">No project views logged yet...</div>
+                  ) : (
+                    stats.topContent.topProjects.map((proj, idx) => (
+                      <div key={idx} className="flex items-center justify-between text-xs border-b border-border/50 pb-2 last:border-b-0">
+                        <span className="font-mono text-slate-300 font-medium truncate max-w-[120px]" title={proj.name}>
+                          {proj.name}
+                        </span>
+                        <span className="font-bold text-emerald-400">{proj.count.toLocaleString()} views</span>
+                      </div>
+                    ))
+                  )}
                 </div>
               </div>
 
@@ -608,14 +625,12 @@ export default function AnalyticsOverview() {
                   </ResponsiveContainer>
                 </div>
               </div>
-
             </div>
           )}
 
           {/* TAB 3: DEMOGRAPHICS & DEVICES */}
           {dashboardTab === "demographics" && (
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              
               {/* Browser Distribution */}
               <div className="rounded-xl border border-border bg-card p-5 space-y-4">
                 <div className="border-b border-border pb-3">
@@ -679,13 +694,10 @@ export default function AnalyticsOverview() {
                   ))}
                 </div>
               </div>
-
             </div>
           )}
-
         </div>
       ) : null}
-
     </div>
   );
 }

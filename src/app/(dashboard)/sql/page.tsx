@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Play, Database, Terminal, FileText, CheckCircle2, ChevronRight } from "lucide-react";
+import { Play, Database, Terminal, CheckCircle2, ChevronRight } from "lucide-react";
 
 interface QueryCase {
   title: string;
@@ -120,7 +120,7 @@ ORDER BY cohort_month;`,
   }
 ];
 
-export default function SqlTab() {
+export default function SqlPage() {
   const [selectedIdx, setSelectedIdx] = useState(0);
   const [executing, setExecuting] = useState(false);
   const [showResults, setShowResults] = useState(true);
@@ -144,7 +144,6 @@ export default function SqlTab() {
 
   return (
     <div className="grid grid-cols-1 xl:grid-cols-4 gap-6 select-none font-sans h-full items-stretch">
-      
       {/* Left Sidebar Topics list */}
       <div className="xl:col-span-1 border border-border bg-card rounded-xl p-4 flex flex-col gap-4">
         <div className="flex items-center gap-2 border-b border-border pb-3">
@@ -177,12 +176,10 @@ export default function SqlTab() {
         </nav>
       </div>
 
-      {/* Editor & Results Area (Right 3 cols) */}
+      {/* Editor & Results Area */}
       <div className="xl:col-span-3 flex flex-col gap-6">
-        
         {/* SQL Code Window */}
         <div className="border border-border bg-card rounded-xl overflow-hidden flex flex-col">
-          {/* Header */}
           <div className="flex items-center justify-between bg-secondary border-b border-border px-5 py-3">
             <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
               <Terminal size={14} className="text-cyan-600 dark:text-cyan-400" />
@@ -199,11 +196,9 @@ export default function SqlTab() {
             </button>
           </div>
 
-          {/* Code Area */}
           <div className="p-5 font-mono text-[11.5px] leading-relaxed bg-secondary text-foreground overflow-x-auto min-h-[180px]">
             <pre className="whitespace-pre">
               {currentCase.query.split("\n").map((line, lIdx) => {
-                // Inline pseudo-syntax highlighter
                 let highlighted = line
                   .replace(/(SELECT|FROM|WHERE|GROUP BY|HAVING|ORDER BY|JOIN|LEFT JOIN|WITH|OVER|PARTITION BY|DENSE_RANK|LAG|COALESCE|SUM|AVG|COUNT|ROUND|MIN|DATE_TRUNC|AS|ON|AND|OR|DESC|INTERVAL)/g, '<span class="text-cyan-600 dark:text-cyan-400">$1</span>')
                   .replace(/(--.*)/g, '<span class="text-slate-500 dark:text-slate-400">$1</span>')
@@ -233,14 +228,12 @@ export default function SqlTab() {
             )}
           </div>
 
-          {/* Telemetry/Log window when executing */}
           {(executing || terminalOutput) && (
             <pre className="font-mono text-[10px] text-muted-foreground bg-background p-3 rounded border border-border max-h-24 overflow-y-auto whitespace-pre-line">
               {terminalOutput}
             </pre>
           )}
 
-          {/* Results Table Grid */}
           {showResults && !executing && (
             <div className="overflow-x-auto rounded border border-border">
               <table className="min-w-full text-left font-mono text-[11px] text-foreground">
@@ -268,15 +261,12 @@ export default function SqlTab() {
             </div>
           )}
 
-          {/* Description */}
           <div className="text-[11px] text-muted-foreground leading-relaxed bg-secondary rounded-lg p-3 border border-border">
             <span className="font-semibold text-foreground block mb-1">Functional Description</span>
             {currentCase.description}
           </div>
         </div>
-
       </div>
-
     </div>
   );
 }

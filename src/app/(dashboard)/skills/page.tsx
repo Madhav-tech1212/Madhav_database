@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Database, Terminal, BarChart, Cpu, Code } from "lucide-react";
+import { Database, Terminal, BarChart, Code } from "lucide-react";
 
 interface SkillItem {
   name: string;
@@ -47,16 +47,6 @@ const skillCategories: SkillCategory[] = [
       { name: "Storytelling & Visual Design", level: 92 }
     ]
   },
-  // {
-  //   title: "Machine Learning & Stats",
-  //   icon: Cpu,
-  //   skills: [
-  //     { name: "Scikit-Learn (Supervised/Unsupervised)", level: 82 },
-  //     { name: "Time Series Forecasting (SARIMAX)", level: 80 },
-  //     { name: "Statistical Hypothesis Testing", level: 84 },
-  //     { name: "Data Cleaning / Preprocessing", level: 94 }
-  //   ]
-  // },
   {
     title: "Web Tech & Frameworks",
     icon: Code,
@@ -69,7 +59,6 @@ const skillCategories: SkillCategory[] = [
   }
 ];
 
-// Sub-component for individual skill bar with delay
 function SkillBar({ name, level, delay }: { name: string; level: number; delay: number }) {
   const [width, setWidth] = useState(0);
 
@@ -96,7 +85,7 @@ function SkillBar({ name, level, delay }: { name: string; level: number; delay: 
   );
 }
 
-export default function SkillsTab() {
+export default function SkillsPage() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 select-none font-sans">
       {skillCategories.map((cat, catIdx) => {
@@ -109,7 +98,6 @@ export default function SkillsTab() {
             transition={{ duration: 0.4, delay: catIdx * 0.08 }}
             className="rounded-xl border border-border bg-card p-5 space-y-4 hover:border-cyan-500/20 transition-all duration-300"
           >
-            {/* Header */}
             <div className="flex items-center gap-2.5 border-b border-border pb-3">
               <div className="rounded-lg bg-secondary p-2 border border-border text-cyan-600 dark:text-cyan-400">
                 <Icon size={16} />
@@ -119,7 +107,6 @@ export default function SkillsTab() {
               </h3>
             </div>
 
-            {/* List of skills */}
             <div className="space-y-4">
               {cat.skills.map((skill, sIdx) => (
                 <SkillBar

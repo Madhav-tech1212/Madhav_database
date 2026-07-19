@@ -1,28 +1,15 @@
-// ResumeTab.tsx
 "use client";
 
-import { Printer, Download, Mail, Phone, MapPin } from "lucide-react";
+import { Download, Mail, MapPin } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
-export default function ResumeTab() {
+export default function ResumePage() {
   const handlePrint = () => window.print();
 
   return (
     <div className="max-w-5xl mx-auto space-y-6">
       <div className="flex items-center justify-between print:hidden">
-        {/* <div>
-          <h2 className="text-xl font-bold text-white">Resume</h2>
-          <p className="text-slate-400 text-sm">ATS Optimized • Remote Data Analyst</p>
-        </div> */}
-
         <div className="flex gap-3">
-          {/* <button
-            onClick={handlePrint}
-            className="px-4 py-2 rounded-lg border border-slate-700 flex items-center gap-2"
-          >
-            <Printer size={15}/>Print
-          </button> */}
-
           <button
             onClick={handlePrint}
             className="px-4 py-2 rounded-lg bg-cyan-500 text-black font-semibold flex items-center gap-2"

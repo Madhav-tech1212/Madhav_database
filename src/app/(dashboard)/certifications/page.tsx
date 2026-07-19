@@ -55,10 +55,9 @@ const certificationsList: Certification[] = [
   }
 ];
 
-export default function CertificationsTab() {
+export default function CertificationsPage() {
   return (
     <div className="space-y-6 select-none font-sans">
-      
       <div className="border border-border bg-card rounded-xl p-5 mb-2">
         <h3 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-1">Industry Credentials</h3>
         <p className="text-xs text-muted-foreground">
@@ -78,7 +77,6 @@ export default function CertificationsTab() {
             <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-300 from-transparent via-cyan-500 to-transparent" />
 
             <div className="space-y-3">
-              {/* Category Icon Badge */}
               <div className="flex items-center justify-between">
                 <span className="rounded bg-secondary border border-border px-2 py-0.5 text-xs font-mono text-cyan-600 dark:text-cyan-400 uppercase">
                   {cert.category}
@@ -88,7 +86,6 @@ export default function CertificationsTab() {
                 </div>
               </div>
 
-              {/* Title & Org */}
               <div className="space-y-1">
                 <h4 className="text-sm font-bold text-foreground leading-snug group-hover:text-primary transition-colors pr-2">
                   {cert.name}
@@ -99,7 +96,6 @@ export default function CertificationsTab() {
               </div>
             </div>
 
-            {/* Verification details and buttons */}
             <div className="mt-5 border-t border-border pt-4 space-y-3">
               <div className="flex items-center justify-between text-xs font-mono text-muted-foreground">
                 <div className="flex items-center gap-1">
@@ -123,7 +119,6 @@ export default function CertificationsTab() {
           </motion.div>
         ))}
       </div>
-
     </div>
   );
 }

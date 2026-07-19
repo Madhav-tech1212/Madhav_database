@@ -2,22 +2,21 @@
 
 import { useEffect, useRef } from "react";
 import { tracker } from "@/lib/tracker";
+import { usePathname } from "next/navigation";
 
-interface AnalyticsTrackerProps {
-  activeTab: string;
-}
-
-export default function AnalyticsTracker({ activeTab }: AnalyticsTrackerProps) {
+export default function AnalyticsTracker() {
+  const pathname = usePathname();
   const trackedDepths = useRef<Set<number>>(new Set());
-  const lastTab = useRef<string>("");
+  const lastPath = useRef<string>("");
 
-  // 1. Tracks tab changes as page views
+  // 1. Tracks page views via path changes
   useEffect(() => {
-    if (activeTab && activeTab !== lastTab.current) {
-      lastTab.current = activeTab;
-      tracker.trackPageView(activeTab);
+    if (pathname && pathname !== lastPath.current) {
+      lastPath.current = pathname;
+      const cleanPath = pathname === "/" ? "home" : pathname.replace(/^\//, "");
+      tracker.trackPageView(cleanPath);
     }
-  }, [activeTab]);
+  }, [pathname]);
 
   // 2. Initializes session, hooks scroll depth and click listeners
   useEffect(() => {

@@ -1,5 +1,14 @@
-import LayoutWrapper from "@/components/dashboard/LayoutWrapper";
+"use client";
+
+import HeroSection from "@/components/dashboard/HeroSection";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-  return <LayoutWrapper />;
+  const router = useRouter();
+
+  const handleEnter = () => {
+    router.push("/home");
+  };
+
+  return <HeroSection onEnter={handleEnter} />;
 }

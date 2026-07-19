@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShieldAlert, Terminal, Lock, CheckCircle2, AlertCircle } from "lucide-react";
-import AnalyticsOverview from "@/components/analytics/AnalyticsOverview";
+import AnalyticsOverview from "./analytics/page";
 
 export default function AdminPage() {
   const [authorized, setAuthorized] = useState(false);

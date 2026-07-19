@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Play, Terminal, ChevronRight, CheckCircle2, ShieldAlert } from "lucide-react";
+import { Play, Terminal, CheckCircle2 } from "lucide-react";
 
 interface PythonScript {
   title: string;
@@ -149,7 +149,7 @@ upload_to_s3("tx_log_backup.tar.gz", "corporate-db-vault-prod")`,
   }
 ];
 
-export default function PythonTab() {
+export default function PythonPage() {
   const [selectedIdx, setSelectedIdx] = useState(0);
   const [executing, setExecuting] = useState(false);
   const [activeLogs, setActiveLogs] = useState<string[]>([]);
@@ -160,7 +160,6 @@ export default function PythonTab() {
     setExecuting(true);
     setActiveLogs([]);
     
-    // Simulate log output step-by-step
     let logIndex = 0;
     const interval = setInterval(() => {
       if (logIndex < currentScript.logs.length) {
@@ -175,7 +174,6 @@ export default function PythonTab() {
 
   return (
     <div className="grid grid-cols-1 xl:grid-cols-4 gap-6 select-none font-sans h-full items-stretch">
-      
       {/* Side selection menu */}
       <div className="xl:col-span-1 border border-border bg-card rounded-xl p-4 flex flex-col gap-4">
         <div className="flex items-center gap-2 border-b border-border pb-3">
@@ -208,10 +206,8 @@ export default function PythonTab() {
 
       {/* Code window & Stdout window */}
       <div className="xl:col-span-3 flex flex-col gap-6">
-        
         {/* Python File Editor */}
         <div className="border border-border bg-card rounded-xl overflow-hidden flex flex-col">
-          {/* Top Bar */}
           <div className="flex items-center justify-between bg-secondary border-b border-border px-5 py-3">
             <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
               <Terminal size={14} className="text-yellow-600 dark:text-yellow-500" />
@@ -228,11 +224,9 @@ export default function PythonTab() {
             </button>
           </div>
 
-          {/* Code display */}
           <div className="p-5 font-mono text-[11.5px] leading-relaxed bg-secondary text-foreground overflow-x-auto min-h-[220px]">
             <pre className="whitespace-pre">
               {currentScript.code.split("\n").map((line, lIdx) => {
-                // Pseudo syntax highlighters for Python
                 let highlighted = line
                   .replace(/(import|from|def|return|if|else|elif|for|in|try|except|while|as)\b/g, '<span class="text-yellow-600 dark:text-yellow-500">$1</span>')
                   .replace(/print/g, '<span class="text-cyan-600 dark:text-cyan-400">print</span>')
@@ -262,7 +256,6 @@ export default function PythonTab() {
             )}
           </div>
 
-          {/* Log viewer output window */}
           <div className="font-mono text-[10.5px] text-foreground bg-background p-4 rounded-lg border border-border min-h-[140px] max-h-[240px] overflow-y-auto space-y-1.5 scrollbar-thin">
             {activeLogs.length === 0 ? (
               <div className="text-muted-foreground italic select-none">Press 'Run Script' to execute the interpreter console...</div>
@@ -270,7 +263,7 @@ export default function PythonTab() {
               activeLogs.map((log, idx) => {
                 let logClass = "text-foreground";
                 if (log.includes("SUCCESS")) logClass = "text-emerald-500 dark:text-emerald-400 font-semibold";
-                if (log.includes("ERROR") || log.includes("ShieldAlert")) logClass = "text-rose-500 dark:text-rose-400 font-semibold";
+                if (log.includes("ERROR")) logClass = "text-rose-500 dark:text-rose-400 font-semibold";
                 if (log.includes("INFO")) logClass = "text-cyan-600 dark:text-cyan-400";
                 return (
                   <div key={idx} className={logClass}>
@@ -287,15 +280,12 @@ export default function PythonTab() {
             )}
           </div>
 
-          {/* Description of python file */}
           <div className="text-[11px] text-muted-foreground leading-relaxed bg-secondary rounded-lg p-3 border border-border">
             <span className="font-semibold text-foreground block mb-1">Execution Objectives</span>
             {currentScript.description}
           </div>
         </div>
-
       </div>
-
     </div>
   );
 }

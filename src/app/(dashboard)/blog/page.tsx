@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { BookOpen, Calendar, Clock, ArrowRight } from "lucide-react";
+import { Calendar, Clock, ArrowRight } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog";
 
 interface Article {
@@ -54,12 +54,11 @@ const blogArticles: Article[] = [
   }
 ];
 
-export default function BlogTab() {
+export default function BlogPage() {
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
 
   return (
     <div className="space-y-6 select-none font-sans max-w-4xl mx-auto">
-      
       <div className="border border-border bg-card rounded-xl p-5 mb-2">
         <h3 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-1">Developer Notebook</h3>
         <p className="text-xs text-muted-foreground">
@@ -74,7 +73,6 @@ export default function BlogTab() {
             className="group rounded-xl border border-border bg-card p-6 hover:border-cyan-500/20 transition-all duration-300 flex flex-col justify-between gap-4"
           >
             <div className="space-y-2">
-              {/* Category, Date, readTime */}
               <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-muted-foreground">
                 <span className="rounded bg-secondary border border-border px-2 py-0.5 text-cyan-600 dark:text-cyan-400 font-semibold uppercase">
                   {article.category}
@@ -89,7 +87,6 @@ export default function BlogTab() {
                 </div>
               </div>
 
-              {/* Title & summary */}
               <h4 className="text-base font-bold text-foreground group-hover:text-primary transition-colors">
                 {article.title}
               </h4>
@@ -98,7 +95,6 @@ export default function BlogTab() {
               </p>
             </div>
 
-            {/* Read button */}
             <div className="flex justify-end border-t border-border pt-4">
               <Dialog>
                 <DialogTrigger
@@ -109,7 +105,6 @@ export default function BlogTab() {
                   <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
                 </DialogTrigger>
                 
-                {/* Modal View */}
                 <DialogContent className="max-w-2xl bg-card border border-border text-card-foreground rounded-xl overflow-hidden font-sans max-h-[85vh] overflow-y-auto">
                   <DialogHeader className="border-b border-border pb-4">
                     <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-muted-foreground mb-1">
@@ -130,7 +125,6 @@ export default function BlogTab() {
                   {selectedArticle && (
                     <div className="space-y-4 pt-4 text-xs leading-relaxed text-foreground font-sans">
                       {selectedArticle.content.map((p, pIdx) => {
-                        // Check if paragraph contains SQL or Python code
                         const isCode = p.includes("SELECT") || p.includes("CREATE INDEX") || p.includes("import pandas") || p.includes("for chunk in");
                         if (isCode) {
                           return (
@@ -149,7 +143,6 @@ export default function BlogTab() {
           </div>
         ))}
       </div>
-
     </div>
   );
 }

@@ -2,13 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 import { 
   Database, 
   Terminal, 
-  Award, 
   Briefcase, 
-  GitBranch, 
-  Cpu, 
   BarChart, 
   ArrowUpRight 
 } from "lucide-react";
@@ -57,8 +55,6 @@ const skillRadarData = [
   { subject: "SQL / Warehousing", A: 95, fullMark: 100 },
   { subject: "Python Scripts", A: 90, fullMark: 100 },
   { subject: "Power BI / DAX", A: 88, fullMark: 100 },
-  // { subject: "Machine Learning", A: 82, fullMark: 100 },
-  // { subject: "Data Wrangling", A: 92, fullMark: 100 },
   { subject: "Excel / Power Query", A: 80, fullMark: 100 },
   { subject: "Statistics / Analytics", A: 78, fullMark: 100 },
   { subject: "ETL / Automation", A: 85, fullMark: 100 },
@@ -83,9 +79,7 @@ const techUsageData = [
 // Generate Mock GitHub contributions (53 weeks * 7 days = 371 cells)
 const generateGitContributions = () => {
   const data = [];
-  const levels = [0, 1, 2, 3, 4];
   for (let i = 0; i < 371; i++) {
-    // Generate weight to make it look realistic (weekends have less, random bursts)
     const day = i % 7;
     let level = 0;
     const rand = Math.random();
@@ -101,12 +95,22 @@ const generateGitContributions = () => {
 
 const gitContribs = generateGitContributions();
 
-interface HomeTabProps {
-  setActiveTab: (tab: string) => void;
-  theme?: "light" | "dark";
-}
+export default function HomePage() {
+  const router = useRouter();
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
 
-export default function HomeTab({ setActiveTab, theme = "dark" }: HomeTabProps) {
+  useEffect(() => {
+    const root = window.document.documentElement;
+    setTheme(root.classList.contains("dark") ? "dark" : "light");
+
+    const observer = new MutationObserver(() => {
+      setTheme(root.classList.contains("dark") ? "dark" : "light");
+    });
+    observer.observe(root, { attributes: true, attributeFilter: ["class"] });
+
+    return () => observer.disconnect();
+  }, []);
+
   const tickColor = theme === "dark" ? "#8a9ebf" : "#475569";
   const gridColor = theme === "dark" ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.05)";
 
@@ -133,24 +137,8 @@ export default function HomeTab({ setActiveTab, theme = "dark" }: HomeTabProps) 
       suffix: "", 
       icon: BarChart, 
       color: "from-cyan-500 to-emerald-500", 
-      tab: "powerbi" 
+      tab: "" 
     },
-    // { 
-    //   title: "Machine Learning Projects", 
-    //   value: 18, 
-    //   suffix: "", 
-    //   icon: Cpu, 
-    //   color: "from-purple-500 to-pink-500", 
-    //   tab: "ml" 
-    // },
-    // { 
-    //   title: "Industry Certifications", 
-    //   value: 8, 
-    //   suffix: "", 
-    //   icon: Award, 
-    //   color: "from-yellow-500 to-amber-500", 
-    //   tab: "certifications" 
-    // },
     { 
       title: "Years Active Experience", 
       value: 2, 
@@ -159,14 +147,6 @@ export default function HomeTab({ setActiveTab, theme = "dark" }: HomeTabProps) 
       color: "from-emerald-400 to-teal-500", 
       tab: "experience" 
     },
-    // { 
-    //   title: "Annual Git Contributions", 
-    //   value: 1842, 
-    //   suffix: "", 
-    //   icon: GitBranch, 
-    //   color: "from-green-400 to-cyan-400", 
-    //   tab: "projects" 
-    // },
   ];
 
   return (
@@ -203,8 +183,10 @@ export default function HomeTab({ setActiveTab, theme = "dark" }: HomeTabProps) 
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: idx * 0.05 }}
-              onClick={() => setActiveTab(card.tab)}
-              className="group relative cursor-pointer overflow-hidden rounded-xl border border-border bg-card p-5 hover:border-cyan-500/30 hover:shadow-lg hover:shadow-cyan-950/10 transition-all duration-300"
+              onClick={() => card.tab && router.push(`/${card.tab}`)}
+              className={`group relative overflow-hidden rounded-xl border border-border bg-card p-5 hover:border-cyan-500/30 hover:shadow-lg hover:shadow-cyan-950/10 transition-all duration-300 ${
+                card.tab ? "cursor-pointer" : "cursor-default"
+              }`}
             >
               <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-300 from-transparent via-cyan-500 to-transparent" />
               <div className="flex items-start justify-between">
@@ -216,13 +198,13 @@ export default function HomeTab({ setActiveTab, theme = "dark" }: HomeTabProps) 
                     <CountUp value={card.value} suffix={card.suffix} />
                   </div>
                 </div>
-                <div className={`rounded-lg bg-secondary p-2.5 border border-border group-hover:text-primary transition-colors`}>
+                <div className="rounded-lg bg-secondary p-2.5 border border-border group-hover:text-primary transition-colors">
                   <Icon size={18} />
                 </div>
               </div>
               <div className="mt-3 flex items-center justify-between text-xs text-muted-foreground">
-                <span>View workspace files</span>
-                <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                <span>{card.tab ? "View workspace files" : "Internal Metric"}</span>
+                {card.tab && <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />}
               </div>
             </motion.div>
           );
@@ -276,7 +258,7 @@ export default function HomeTab({ setActiveTab, theme = "dark" }: HomeTabProps) 
                 />
                 <Bar dataKey="score" fill="#3b82f6" radius={[0, 4, 4, 0]}>
                   {techUsageData.map((entry, index) => (
-                    <motion.rect
+                    <rect
                       key={`bar-${index}`}
                       fill={index % 2 === 0 ? "#00d2ff" : "#3b82f6"}
                     />

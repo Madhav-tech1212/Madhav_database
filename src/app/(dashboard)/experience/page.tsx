@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Briefcase, Target, Calendar, Award } from "lucide-react";
+import { Briefcase, Calendar, Award } from "lucide-react";
 
 interface ExperienceItem {
   company: string;
@@ -40,7 +40,6 @@ const experiences: ExperienceItem[] = [
       "Git"
     ]
   },
-
   {
     company: "Personal Analytics Portfolio",
     role: "Business Intelligence & Data Analytics",
@@ -66,7 +65,6 @@ const experiences: ExperienceItem[] = [
       "Data Visualization"
     ]
   },
-
   {
     company: "SM Timbers & Klariti Learning",
     role: "Freelance Full Stack Developer",
@@ -93,7 +91,6 @@ const experiences: ExperienceItem[] = [
       "JavaScript"
     ]
   },
-
   {
     company: "CDIX Innovation Pvt Ltd",
     role: "Full Stack Developer",
@@ -122,10 +119,9 @@ const experiences: ExperienceItem[] = [
   }
 ];
 
-export default function ExperienceTab() {
+export default function ExperiencePage() {
   return (
     <div className="space-y-6 select-none font-sans max-w-4xl mx-auto">
-      
       <div className="border border-border bg-card rounded-xl p-5 mb-6">
         <h3 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-1">Career Timeline</h3>
         <p className="text-xs text-muted-foreground">
@@ -143,13 +139,11 @@ export default function ExperienceTab() {
             transition={{ duration: 0.4, delay: idx * 0.1 }}
             className="relative"
           >
-            {/* Timeline Dot Icon */}
             <div className="absolute -left-[45px] top-1.5 flex h-7.5 w-7.5 items-center justify-center rounded-full border border-cyan-500/30 bg-card text-cyan-500 dark:text-cyan-400 shadow-md shadow-cyan-500/20">
               <Briefcase size={13} />
             </div>
 
             <div className="border border-border bg-card rounded-xl p-5 space-y-4 hover:border-cyan-500/20 transition-all duration-300">
-              {/* Header block */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 border-b border-border pb-3">
                 <div>
                   <h4 className="text-base font-bold text-foreground">{exp.role}</h4>
@@ -164,7 +158,6 @@ export default function ExperienceTab() {
                 </div>
               </div>
 
-              {/* Responsibilities */}
               <div className="space-y-1.5">
                 <span className="text-xs uppercase font-bold text-muted-foreground tracking-wider">
                   Core Responsibilities
@@ -176,7 +169,6 @@ export default function ExperienceTab() {
                 </ul>
               </div>
 
-              {/* Key Achievements */}
               <div className="space-y-2 border-t border-border pt-3">
                 <span className="text-xs uppercase font-bold text-cyan-600 dark:text-cyan-400 tracking-wider flex items-center gap-1.5">
                   <Award size={12} />
@@ -191,7 +183,6 @@ export default function ExperienceTab() {
                 </ul>
               </div>
 
-              {/* Tech stack footer */}
               <div className="flex flex-wrap gap-1.5 border-t border-border pt-3">
                 {exp.tech.map((t) => (
                   <span key={t} className="rounded bg-secondary border border-border px-2 py-0.5 text-xs font-mono text-muted-foreground">
@@ -203,7 +194,6 @@ export default function ExperienceTab() {
           </motion.div>
         ))}
       </div>
-
     </div>
   );
 }

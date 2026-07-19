@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { BarChart, AreaChart, Area, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
-import { LayoutGrid, FileSpreadsheet, Percent, GitFork, Lightbulb, BarChart3, ChevronRight } from "lucide-react";
+import { BarChart, AreaChart, Area, Bar, XAxis, Tooltip, ResponsiveContainer } from "recharts";
+import { LayoutGrid, FileSpreadsheet, GitFork, BarChart3, ChevronRight } from "lucide-react";
 
 interface PowerBiDashboard {
   title: string;
@@ -87,13 +87,12 @@ const pbiDashboards: PowerBiDashboard[] = [
   }
 ];
 
-export default function PowerBiTab() {
+export default function PowerBiPage() {
   const [selectedIdx, setSelectedIdx] = useState(0);
   const current = pbiDashboards[selectedIdx];
 
   return (
     <div className="grid grid-cols-1 xl:grid-cols-4 gap-6 select-none font-sans h-full items-stretch">
-      
       {/* Sidebar switcher */}
       <div className="xl:col-span-1 border border-border bg-card rounded-xl p-4 flex flex-col gap-4">
         <div className="flex items-center gap-2 border-b border-border pb-3">
@@ -124,7 +123,6 @@ export default function PowerBiTab() {
 
       {/* Main dashboard visual showcase */}
       <div className="xl:col-span-3 flex flex-col gap-6">
-        
         {/* KPI Panel */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {current.kpis.map((kpi, kIdx) => (
@@ -177,7 +175,6 @@ export default function PowerBiTab() {
 
         {/* Data Architecture / Star Schema Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          
           {/* Star Schema Diagram Card */}
           <div className="rounded-xl border border-border bg-card p-5 space-y-4">
             <div className="flex items-center gap-2 border-b border-border pb-3">
@@ -225,11 +222,8 @@ export default function PowerBiTab() {
               ))}
             </div>
           </div>
-
         </div>
-
       </div>
-
     </div>
   );
 }

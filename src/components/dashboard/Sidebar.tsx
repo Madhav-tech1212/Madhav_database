@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import {
   Home,
   User,
@@ -88,8 +89,7 @@ export default function Sidebar({
       ]
     },
   ];
-  const handleNav = (tabId: string) => {
-    setActiveTab(tabId);
+  const handleNav = () => {
     setMobileOpen(false); // Close mobile drawer when clicked
   };
 
@@ -127,10 +127,12 @@ export default function Sidebar({
               {group.items.map((item) => {
                 const Icon = item.icon;
                 const isActive = activeTab === item.id;
+                const itemHref = item.id === "home" ? "/home" : `/${item.id}`;
                 return (
                   <li key={item.id}>
-                    <button
-                      onClick={() => handleNav(item.id)}
+                    <Link
+                      href={itemHref}
+                      onClick={handleNav}
                       className={`flex items-center rounded-lg py-2 text-sm font-medium transition-all duration-200 ${
                         collapsed 
                           ? "justify-center w-10 h-10 mx-auto" 
@@ -151,7 +153,7 @@ export default function Sidebar({
                           {item.label}
                         </motion.span>
                       )}
-                    </button>
+                    </Link>
                   </li>
                 );
               })}

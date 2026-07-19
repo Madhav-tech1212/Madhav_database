@@ -172,7 +172,7 @@ const mlProjects: MlProject[] = [
   }
 ];
 
-export default function MlTab() {
+export default function MlPage() {
   const [selectedProjectIdx, setSelectedProjectIdx] = useState(0);
   const [activeStageIdx, setActiveStageIdx] = useState(0);
 
@@ -181,11 +181,11 @@ export default function MlTab() {
 
   const handleProjectChange = (idx: number) => {
     setSelectedProjectIdx(idx);
-    setActiveStageIdx(0); // Reset stepper on project swap
+    setActiveStageIdx(0);
   };
+
   return (
     <div className="grid grid-cols-1 xl:grid-cols-4 gap-6 select-none font-sans h-full items-stretch">
-      
       {/* Selector sidebar */}
       <div className="xl:col-span-1 border border-border bg-card rounded-xl p-4 flex flex-col gap-4">
         <div className="flex items-center gap-2 border-b border-border pb-3">
@@ -214,9 +214,8 @@ export default function MlTab() {
         </nav>
       </div>
 
-      {/* Main dashboard space (Right 3 cols) */}
+      {/* Main dashboard space */}
       <div className="xl:col-span-3 flex flex-col gap-6">
-        
         {/* Project Header Summary */}
         <div className="rounded-xl border border-border bg-card p-5 space-y-2">
           <div className="flex flex-wrap items-center justify-between gap-2">
@@ -278,7 +277,6 @@ export default function MlTab() {
             )}
           </div>
 
-          {/* Description & Detail */}
           <div className="space-y-4 text-xs leading-relaxed text-foreground">
             <p className="font-semibold text-foreground">
               {currentStage.desc}
@@ -292,9 +290,7 @@ export default function MlTab() {
             STABLE ARTIFACT PATH // ML_DEPLOYMENT_PIPELINE.PKL
           </div>
         </div>
-
       </div>
-
     </div>
   );
 }
