@@ -86,13 +86,15 @@ export default function AboutPage() {
           </div>
           <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
             <p>
-              I am a results-oriented *Data Analyst*, **Business Intelligence Developer**, and **Machine Learning Engineer** dedicated to transforming unstructured datasets into strategic business assets. I specialize in bridging the gap between raw data storage infrastructure and executive decision-making.
+              I am a passionate <strong>Data Analyst</strong> and <strong>Business Intelligence Developer</strong> focused on transforming raw data into actionable business insights. I enjoy solving complex business problems through analytics, visualization, and data-driven decision-making.
             </p>
+
             <p>
-              My technical expertise spans building complex **SQL queries** (CTEs, Window functions, performance tuning), developing structured **Python ETL pipelines** (Pandas, NumPy, automation), modeling analytical warehouses (Star schema designs), and building high-fidelity **Power BI reports** that stakeholders trust.
+              My expertise includes writing optimized <strong>SQL queries</strong>, performing data analysis with <strong>Python</strong> (Pandas, NumPy), cleaning and transforming datasets, and building interactive <strong>Power BI dashboards</strong> that help organizations monitor KPIs and improve performance.
             </p>
+
             <p>
-              Furthermore, I leverage **predictive modeling** and machine learning algorithms (Scikit-Learn, clustering, forecasting models) to anticipate market trends, identify operational anomalies, and engineer custom analytical solutions.
+              I continuously expand my knowledge in analytics and machine learning while working on real-world projects. My goal is to build scalable data solutions that empower businesses to make smarter, faster, and more confident decisions.
             </p>
           </div>
         </div>
